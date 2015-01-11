@@ -1,0 +1,35 @@
+#include <string>
+#include <iostream>
+#include <iomanip>
+#include <windows.h>
+
+using namespace std;
+int IterationF(int n);
+int main(){
+    LARGE_INTEGER startTime,endTime,freq;
+    double times;
+    QueryPerformanceFrequency(&freq);
+    
+    int ItNumber;
+    cout<<"enter a num"<<endl;
+    cin>>ItNumber;
+    QueryPerformanceCounter(&startTime);
+    cout<<IterationF(ItNumber)<<endl;
+    QueryPerformanceCounter(&endTime);
+    times=((double)endTime.QuadPart-(double)startTime.QuadPart)
+          /freq.QuadPart;
+    cout<<"used time : ";
+    cout<<fixed<<setprecision(20)<<times<< ' s '<<endl;
+    system ("pause");
+    return 0;
+}
+
+int IterationF(int n)
+{
+    int t;
+    for (t=0;n>1;++t){
+        if (n%2==0){
+           n=n/2;}
+        else {
+           n=n*3+1;}}
+    return t;}
